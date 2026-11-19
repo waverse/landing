@@ -4,8 +4,15 @@ metadata:
   name: ingress
   namespace: waverse
   annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/acme-challenge-type: dns01
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - waver.se
+    secretName: waver-se-cert
   rules:
   - host: waver.se
     http:
@@ -15,5 +22,5 @@ spec:
         backend:
           service:
             name: landing
-            port: 
+            port:
               number: 80

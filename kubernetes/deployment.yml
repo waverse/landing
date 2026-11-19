@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: landing
   namespace: waverse
+  labels:
+    app: landing
 spec:
   replicas: 1
   selector:
@@ -15,8 +17,10 @@ spec:
     spec:
       containers:
       - name: landing
-        image: localhost:32000/waverse-landing:1.0.0
+        image: registry.ventic.tv/waverse/landing:1.0.1
+        imagePullPolicy: Always
         resources:
           limits:
             memory: 512Mi
-            cpu: "1"
+          requests:
+            cpu: "0.5"

@@ -1,2 +1,7 @@
+.git
+.gitignore
+.dockerignore
+Dockerfile
+kubernetes/
 README.md
 props/
